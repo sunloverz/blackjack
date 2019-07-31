@@ -1,13 +1,12 @@
 package deck
 
-
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 func ExampleCard() {
-	fmt.Println(Card{Rank:Ace, Suit:Heart})
+	fmt.Println(Card{Rank: Ace, Suit: Heart})
 	fmt.Println(Card{Rank: Two, Suit: Spade})
 	fmt.Println(Card{Rank: Nine, Suit: Diamond})
 	fmt.Println(Card{Rank: Jack, Suit: Club})
@@ -21,11 +20,11 @@ func ExampleCard() {
 	// Joker
 }
 
-func TestNew(t * testing.T){
-  cards := New()
-  if len(cards) != 52 {
-	  t.Error("Wrong number of cards in a new deck.")
-  }
+func TestNew(t *testing.T) {
+	cards := New()
+	if len(cards) != 52 {
+		t.Error("Wrong number of cards in a new deck.")
+	}
 }
 
 func TestSort(t *testing.T) {
@@ -50,7 +49,7 @@ func TestJokers(t *testing.T) {
 	cards := New(Jokers(4))
 	// fmt.Println(len(cards))
 	count := 0
-	for _, c:= range cards {
+	for _, c := range cards {
 		if c.Suit == Joker {
 			count++
 		}
@@ -63,10 +62,10 @@ func TestJokers(t *testing.T) {
 
 func TestFilterCard(t *testing.T) {
 	filter := func(card Card) bool {
-	  return card.Rank == Two || card.Rank == Three	
+		return card.Rank == Two || card.Rank == Three
 	}
 	cards := New(FilterCards(filter))
-    for _, c := range cards {
+	for _, c := range cards {
 		if c.Rank == Two || c.Rank == Three {
 			t.Error("Expected all twos and threes to be filtered out.")
 		}
@@ -74,9 +73,9 @@ func TestFilterCard(t *testing.T) {
 }
 
 func TestDeck(t *testing.T) {
-   cards := New(Deck(3))
+	cards := New(Deck(3))
 
-   if len(cards) != 52 * 3 {
-	   t.Errorf("Expected %d cards, received %d cards.", 52*3, len(cards))
-   }
+	if len(cards) != 52*3 {
+		t.Errorf("Expected %d cards, received %d cards.", 52*3, len(cards))
+	}
 }
